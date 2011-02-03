@@ -6,16 +6,15 @@
 						<h2>Paprasta, lengva distribucija</h2>
 						<p>Sveiki atvykę į puslapį, skirtą <strong>Arch Linux</strong> - lengvai ir lankščiai Linux&#0174; distribucijai, kuri stengiasi į viską žiūrėti kuo papraščiau.</p>
 						<p>Šiuo metu oficialiai yra siūlomi paketai pritaikyti i686 ir x86-64 architektūroms. </p>
+						<p>Mūsų stipri bendruomenė yra įvairi ir padedanti. Jeigu norite labiau susipažinti su Arch Linux - <a href="https://wiki.archlinux.org/index.php/Main_Page_(Lietuvi%C5%A1kai)">peržiūrėkite wiki</a>. Jeigu turite klausimų - aplankykite <a href="http://sls.archlinux.lt/">mūsų forumą</a>.</p>
 					</div>
 					<div class="posts">
 						<h3>Naujienos</h3>
-						<h4>Pasirodė naujas Arch Linux atvaizdas</h4>
-						<p class="timestamp">2011-01-01</p>
-						<div class="article-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pellentesque orci ut neque laoreet semper. Nunc vel velit vitae arcu ullamcorper congue. Suspendisse eget justo risus. Mauris sed lorem purus. Phasellus lacinia mauris ac nibh elementum mattis. Duis auctor adipiscing ligula. Aliquam ultricies nisi a risus suscipit accumsan. Quisque sem odio, auctor quis suscipit nec, rutrum at nibh. Curabitur rutrum nulla sit amet nisi tristique vestibulum non nec orci. Aliquam sed nibh et sapien fermentum suscipit eget at nunc.</div>
-
-						<h4>Pasirodė naujas Arch Linux atvaizdas</h4>
-						<p class="timestamp">2011-01-01</p>
-						<div class="article-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pellentesque orci ut neque laoreet semper. Nunc vel velit vitae arcu ullamcorper congue. Suspendisse eget justo risus. Mauris sed lorem purus. Phasellus lacinia mauris ac nibh elementum mattis. Duis auctor adipiscing ligula. Aliquam ultricies nisi a risus suscipit accumsan. Quisque sem odio, auctor quis suscipit nec, rutrum at nibh. Curabitur rutrum nulla sit amet nisi tristique vestibulum non nec orci. Aliquam sed nibh et sapien fermentum suscipit eget at nunc.</div>
+						<?php foreach ( $posts as $post ) : ?>
+						<h4><?php echo $post->title ?></h4>
+						<p class="timestamp"><?php echo $post->timestamp ?></p>
+						<div class="article-content"><?php echo $post->body ?></div>
+						<?php endforeach; ?>
 
 					</div>
 				</div>
@@ -23,28 +22,33 @@
 
 			<div class="right">
 				<div class="updates widget">
-					<h3>Atnaujinimai <span class="more">(daugiau)</span></h3>
+					<h3>Atnaujinimai</h3>
 					<table>
-						<tr>
-							<td class="pkg-name">pciutils 3.1.7-3</td>
-							<td class="pkg-arch">i686/x86_64</td>
-						</tr>
+						<?php foreach ( $rss as $data ): ?>
+							<?php $item = (array) $data; ?>
+							<tr>
+								<td class="pkg-name"><?php echo anchor($item['link'], $item['title']); ?></td>
+							</tr>
+						<?php endforeach; ?>
 					</table>
 				</div>
 				<div class="nav widget">
 					<h4>Dokumentacija</h4>
 					<ul>
-						<li>Wiki</li>
-						<li>Diegimo vadovas</li>
+						<li><?php echo anchor("https://wiki.archlinux.org/index.php/Main_Page_(Lietuvi%C5%A1kai)", "Wiki"); ?></li>
+						<li><?php echo anchor("https://wiki.archlinux.org/index.php/Beginners'_Guide_(Lietuvi%C5%A1kai)", "Diegimo vadovas"); ?></li>
+						<li><?php echo anchor("https://github.com/arch-linux-lietuva/arch-beginners-guide-lt/raw/master/book.pdf", "Atnaujintas diegimo vadovas") ?></li>
 					</ul>
 					<h4>Bendruomenė</h4>
 					<ul>
-						<li>Diskusijos</li>
+						<li><?php echo anchor("http://sls.archlinux.lt", "Diskusijos"); ?></li>
+						<li><?php echo anchor("http://mail.archlinux.lt", "Elektroninis paštas"); ?></li>
+						<li><?php echo anchor("http://map.archlinux.lt", "Vartotojų žemėlapis"); ?></li>
 					</ul>
 					<h4>Apie</h4>
 					<ul>
-						<li>Apie Arch Linux</li>
-						<li>Apie Arch Linux Lietuva</li>
+						<li><?php echo anchor("https://wiki.archlinux.org/index.php/Arch_Linux_(Lietuvi%C5%A1kai)", "Apie Arch Linux"); ?></li>
+						<li><?php echo anchor("http://sls.archlinux.lt/viewtopic.php?id=2", "Apie Arch Linux Lietuva"); ?></li>
 					</ul>
 				</div>
 			</div>
